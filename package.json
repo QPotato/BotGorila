@@ -1,0 +1,45 @@
+{
+  "name": "twitterbot",
+  "version": "1.0.0",
+  "description": "twitter bot experiment",
+  "main": "dist/bot.js",
+  "scripts": {
+    "start": "npm run serve",
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts",
+    "serve": "node dist/bot.js",
+    "watch-node": "nodemon dist/bot.js",
+    "watch-ts": "tsc -w",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QPotato/twitterbot.git"
+  },
+  "author": "QuanticPotato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QPotato/twitterbot/issues"
+  },
+  "homepage": "https://github.com/QPotato/twitterbot#readme",
+  "dependencies": {
+    "@types/mongodb": "^3.1.28",
+    "@types/node": "^12.0.7",
+    "@types/node-telegram-bot-api": "^0.31.0",
+    "@types/request-promise": "^4.1.44",
+    "@types/twitter": "^1.7.0",
+    "@types/xml2js": "^0.4.4",
+    "mongodb": "^3.2.7",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "rss-parser": "^3.7.1",
+    "twitter": "^1.7.1",
+    "typescript": "^3.5.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "tslint": "^5.17.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1"
+  }
+}

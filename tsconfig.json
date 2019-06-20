@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "es3",
+        "lib": ["es2017"],
+        "outDir": "dist",
+        "rootDir": "src",
+        "strict": true,
+        "sourceMap": true,
+    }
+}
