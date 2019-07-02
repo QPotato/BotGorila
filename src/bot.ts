@@ -1,10 +1,19 @@
 import * as Twitter from 'twitter';
-import config from './config';
 import { toGorila, includesKirchnerism, randomGorilaPhrase } from './gorila';
 import { getNewHeadlines, Nota } from './clarin';
-// @Carlos3568
 
-const T = new Twitter(config);
+
+if (process.env.CONSUMER_KEY === undefined || process.env.CONSUMER_SECRET === undefined || process.env.ACCESS_TOKEN_KEY === undefined || process.env.ACCESS_TOKEN_SECRET === undefined)
+    throw "Mal configurado"
+
+
+const T = new Twitter({
+    consumer_key: process.env.CONSUMER_KEY,
+    consumer_secret: process.env.CONSUMER_SECRET,
+    access_token_key: process.env.ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.ACCESS_TOKEN_SECRET
+});
+
 const tweetarGorila = async () => {
     const notas = await getNewHeadlines();
 
@@ -15,22 +24,19 @@ const tweetarGorila = async () => {
     if(nota === undefined){
         console.log(notas);
         console.log(notasConKirchnerismo);
-        throw new Error('No hay notas usables')
+        console.log('No hay notas usables')
     }
     if (nota.title === undefined)
-        throw new Error('para que tipe, pero en realidad esto no puede pasar');
+        throw new Error('para que tipe, pero en realidad esto no puede pasar salvo que clarin haga cualquiera en su rss');
 
     const tweet_content = `"${toGorila(nota.title)}"\n\n${randomGorilaPhrase()}\n\n\n${nota.link}`;
-    console.log(tweet_content)
-    console.log(tweet_content.length)
-    // T.post('https://api.twitter.com/1.1/statuses/update.json', { status: "testing" }, (error, data) => {
-    //     console.log(data);
-    // });
+    console.log(tweet_content);
+    console.log(tweet_content.length);
+    T.post('https://api.twitter.com/1.1/statuses/update.json', { status: tweet_content }, (error, data) => {
+        console.log(data);
+    });
 }
 
-tweetarGorila()
-// setInterval(tweetarGorila, 24 * 60 * 60 * 1000)
-
-
-
+tweetarGorila();
+setInterval(tweetarGorila, 4 * 60 * 60 * 1000);
 

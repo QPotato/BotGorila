@@ -51,6 +51,10 @@ const gorilaPhrases: string[] = [
     'KAKAS INMUNDAS',
     'SE LES TERMINO EL CHORIPLAN',
     'SON NEGROS DE ALMA ESTOS KAKAS',
+    'ASCO ME DAN LOS KUKAS',
+    'CON MACRI HAY JUSTICIA',
+    'KUKAS ROÑOSOS',
+    'HAGA PATRIA MATE UNA KUKA'
 ];
 
 export const randomGorilaPhrase: () => string = () => gorilaPhrases[Math.floor(Math.random() * gorilaPhrases.length)];
